@@ -2,6 +2,12 @@
 
 A collection of [agent skills](https://agentskills.io/specification) for software development workflows.
 
+## Installation
+
+```bash
+npx skills add cedricvidal/coding-skills
+```
+
 ## Skills
 
 ### WTM — Worktree PR Merge
@@ -16,12 +22,3 @@ The **WTM** skill orchestrates a git-worktree-based development workflow. When i
 6. Merges the PR and cleans up the worktree on confirmation.
 
 See [skills/wtm/SKILL.md](skills/wtm/SKILL.md) for the full workflow definition.
-
-## Structure
-
-```
-skills/<name>/SKILL.md    # Skill definition
-evals/<name>/eval.yaml    # Eval configuration
-evals/<name>/tasks/       # Eval task scenarios
-evals/<name>/fixtures/    # Test fixtures
-```
