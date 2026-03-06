@@ -53,6 +53,7 @@ My Project
 - **Project**: The project display name.
 - **Sections**: Which sections to include by default. Common values: "Yesterday's Progress", "Today's Goals", "Summary", "Blockers / Impediments", "Questions / Discussion".
 - **Sources**: GitHub repository URLs to check for recent activity. This list is progressively built (see Step 6).
+- **GitHub Tool** (optional): Either `gh` or `mcp`. Controls whether to use the `gh` CLI or GitHub MCP server tools for querying GitHub activity. If not set, defaults to `gh` with fallback to MCP if available. If the user expresses a preference during conversation, save it here.
 
 ## Workflow
 
@@ -93,10 +94,11 @@ My Project
 - Read the **Sources** section from `standup.config.md` to get the list of GitHub repository URLs.
 - If no sources are configured, ask the user which GitHub repos they've been working on. Save any repos they mention to the config (see Step 6).
 - Determine the date of the previous standup notes (from Step 4). Use that as the "since" date for activity queries.
+- **Tool selection**: Check the **GitHub Tool** setting in `standup.config.md`. If set to `gh`, use the `gh` CLI. If set to `mcp`, use GitHub MCP server tools. If not set, prefer the `gh` CLI and fall back to GitHub MCP server tools if `gh` is not available. If the user expresses a preference for one or the other during the conversation, save it to the config under a `## GitHub Tool` section.
 - For each GitHub repository, extract the owner and repo name from the URL, then check:
-  - **Commits**: Use `list_commits` to find commits since the last standup date.
-  - **Pull requests**: Use `list_pull_requests` or `search_pull_requests` to find PRs created, merged, or updated since the last standup notes.
-  - **Issues**: Use `search_issues` to find issues created, closed, or updated since the last standup notes.
+  - **Commits**: `gh api` or `list_commits` to find commits since the last standup date.
+  - **Pull requests**: `gh pr list` or `list_pull_requests`/`search_pull_requests` to find PRs created, merged, or updated since the last standup notes.
+  - **Issues**: `gh issue list` or `search_issues` to find issues created, closed, or updated since the last standup notes.
   - **Milestones**: Check for milestone progress if relevant.
 - Compile a list of noteworthy activity the user may have missed.
 - Present the suggestions to the user and ask which ones to include in the standup notes. Do not include items the user declines.
