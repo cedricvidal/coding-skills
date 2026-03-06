@@ -37,3 +37,29 @@ The **Standup Notes** skill creates daily standup documents. When invoked, it:
 The skill progressively learns which GitHub repos belong to each project: whenever the user mentions a repo, it is saved to the project's config for future standups.
 
 See [skills/standup-notes/SKILL.md](skills/standup-notes/SKILL.md) for the full workflow definition.
+
+### Git Guardrails
+
+The **Git Guardrails** skill enforces safety constraints for all git operations. It ensures:
+
+- Explicit file staging (never `git add .`)
+- Incremental commits after each logical step
+- No automatic pushing — requires explicit user approval
+- No force pushing — non-negotiable
+- No amending unless the user explicitly asks
+- Consistent branching conventions (`feat/<name>`, `fix/<name>`)
+- Standardized worktree paths (`<workspace-root>/.worktrees/<name>`)
+
+See [skills/git-guardrails/SKILL.md](skills/git-guardrails/SKILL.md) for the full rule set.
+
+### GitHub CLI
+
+The **GitHub CLI** skill provides best practices for using the `gh` CLI. It covers:
+
+- Sandboxed terminal workarounds (`GH_PAGER=cat`, temp files for long content)
+- Always fetching available metadata (labels, milestones, issue types, projects) before assigning
+- A batch GraphQL query to fetch all metadata in a single call
+- Required token scopes for private vs. public repositories
+- Inferring and applying metadata when creating issues and PRs
+
+See [skills/github-cli/SKILL.md](skills/github-cli/SKILL.md) for the full reference.
