@@ -2,6 +2,9 @@
 name: wtm
 type: utility
 description: Worktree Merge (WTM) workflow — use when the user asks to implement a task using the WTM method, a git worktree, or mentions "worktree merge". This skill orchestrates creating a worktree + branch, coding in isolation, committing incrementally, and merging via PR.
+metadata:
+  author: Cedric Vidal
+  version: "1.0.0"
 ---
 
 # Worktree PR Merge (WTM) Workflow
