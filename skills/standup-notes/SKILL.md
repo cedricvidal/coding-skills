@@ -76,7 +76,7 @@ My Project
 - If the user specifies a date, use that.
 - Otherwise, infer the target date using the current time of day and whether standup notes already exist for today:
   - **Morning (before noon local time)**: Default to today. The user is likely preparing notes for today's standup.
-  - **Afternoon or later (noon or after)**: Check if standup notes already exist for today. If they do, default to the **next business day** (skip weekends). The user is likely drafting tomorrow's notes at the end of the work day. If no notes exist for today, default to today.
+  - **Afternoon or later (noon or after)**: Default to the **next business day** (skip weekends). The user is likely drafting tomorrow's notes at the end of the work day. If no notes exist for today, default to today.
 - Present the resolved date to the user and let them confirm or change it before proceeding.
 - If standup notes already exist for the target date, inform the user and ask whether to overwrite or edit them.
 
