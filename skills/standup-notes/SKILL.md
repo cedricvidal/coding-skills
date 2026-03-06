@@ -1,7 +1,7 @@
 ---
 name: standup-notes
 type: utility
-description: Creates daily standup notes. Use when the user asks to write a standup, daily standup, standup notes, daily update, or daily status update. Supports multiple projects, carries over goals from previous standups, and checks GitHub activity for completeness.
+description: Creates daily standup notes. Use when the user asks to write a standup, daily standup, standup notes, daily update, or daily status update. Supports multiple projects, carries over goals from previous standup notes, and checks GitHub activity for completeness.
 metadata:
   author: Cedric Vidal
   version: "1.0.0"
@@ -13,10 +13,10 @@ metadata:
 
 **USE FOR:**
 - User asks to create a standup, daily standup, standup notes, daily update, or status update
-- User asks to update or edit an existing standup
+- User asks to update or edit existing standup notes
 
 **DO NOT USE FOR:**
-- General note-taking unrelated to standups
+- General note-taking unrelated to standup notes
 - Retrospectives or sprint reviews
 
 ## Configuration
@@ -60,8 +60,8 @@ My Project
 
 - Scan the workspace recursively for files named `standup.config.md`.
 - Build a list of available projects. For each config found, read the **Project** name from it.
-- If the user specifies which project the standup is for, match it against discovered projects.
-- If multiple projects exist and the user hasn't specified one, ask which project they want to create a standup for, listing the discovered project names.
+- If the user specifies which project the standup notes are for, match it against discovered projects.
+- If multiple projects exist and the user hasn't specified one, ask which project they want to create standup notes for, listing the discovered project names.
 - If the user mentions a project that has no `standup.config.md`, proceed to **Step 9 (First-time setup)** to create one, then continue.
 
 ### 2. Locate the standups folder
@@ -74,14 +74,14 @@ My Project
 
 - Default to today's date in `YYYY-MM-DD` format.
 - If the user specifies a different date, use that instead.
-- Check if a standup already exists for the target date. If so, inform the user and ask whether to overwrite or edit it.
+- Check if standup notes already exist for the target date. If so, inform the user and ask whether to overwrite or edit them.
 
-### 4. Find previous standup and carry over goals
+### 4. Find previous standup notes and carry over goals
 
 - List date folders in the standups directory, sorted descending.
-- Find the most recent standup **before** the target date.
-- Read that standup's `standup.md` and extract the **"Today's Goals"** section content.
-- Use the extracted goals as a **draft** for the new standup's **"Yesterday's Progress"** section.
+- Find the most recent standup notes **before** the target date.
+- Read that file's `standup.md` and extract the **"Today's Goals"** section content.
+- Use the extracted goals as a **draft** for the new standup notes' **"Yesterday's Progress"** section.
 - Present this draft to the user and ask:
   - What did you actually accomplish from these goals?
   - What changed, what should be added or removed?
@@ -92,14 +92,14 @@ My Project
 
 - Read the **Sources** section from `standup.config.md` to get the list of GitHub repository URLs.
 - If no sources are configured, ask the user which GitHub repos they've been working on. Save any repos they mention to the config (see Step 6).
-- Determine the date of the previous standup (from Step 4). Use that as the "since" date for activity queries.
+- Determine the date of the previous standup notes (from Step 4). Use that as the "since" date for activity queries.
 - For each GitHub repository, extract the owner and repo name from the URL, then check:
   - **Commits**: Use `list_commits` to find commits since the last standup date.
-  - **Pull requests**: Use `list_pull_requests` or `search_pull_requests` to find PRs created, merged, or updated since the last standup.
-  - **Issues**: Use `search_issues` to find issues created, closed, or updated since the last standup.
+  - **Pull requests**: Use `list_pull_requests` or `search_pull_requests` to find PRs created, merged, or updated since the last standup notes.
+  - **Issues**: Use `search_issues` to find issues created, closed, or updated since the last standup notes.
   - **Milestones**: Check for milestone progress if relevant.
 - Compile a list of noteworthy activity the user may have missed.
-- Present the suggestions to the user and ask which ones to include in the standup. Do not include items the user declines.
+- Present the suggestions to the user and ask which ones to include in the standup notes. Do not include items the user declines.
 
 ### 6. Remember new repos (progressive source discovery)
 
@@ -115,17 +115,17 @@ After drafting progress and goals:
 
 - Ask the user: "Do you have any **blockers or impediments** to raise?"
 - Ask the user: "Any **questions or discussion points** for the team?"
-- If the user provides content for either, include the corresponding section(s) in the standup, even if those sections are not listed in the default config. Use the section names "Blockers / Impediments" and "Questions / Discussion".
+- If the user provides content for either, include the corresponding section(s) in the standup notes, even if those sections are not listed in the default config. Use the section names "Blockers / Impediments" and "Questions / Discussion".
 - If the user has nothing to raise, omit those sections (do not write "None").
 
-### 8. Finalize and write the standup
+### 8. Finalize and write the standup notes
 
-- Assemble the standup document using the sections from the config, plus any additional sections with content (blockers, questions).
+- Assemble the standup notes using the sections from the config, plus any additional sections with content (blockers, questions).
 - Section order: Summary (if configured) > Yesterday's Progress > Today's Goals > Blockers / Impediments (if content) > Questions / Discussion (if content).
 - Title format: `# Standup - YYYY-MM-DD`
 - Create the date directory: `<standups-folder>/YYYY-MM-DD/`
 - Write the file as `standup.md` inside that directory.
-- Show the user the final standup content for confirmation before writing. If they want changes, revise and ask again.
+- Show the user the final standup notes for confirmation before writing. If they want changes, revise and ask again.
 
 ### 9. First-time setup
 
