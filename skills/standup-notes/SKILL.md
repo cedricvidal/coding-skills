@@ -1,7 +1,7 @@
 ---
 name: standup-notes
 type: utility
-description: Creates daily standup notes. Use when the user asks to write a standup, daily standup, standup notes, daily update, or daily status update. Supports multiple projects, carries over goals from previous standup notes, and checks GitHub activity for completeness.
+description: Creates daily standup notes. Use when the user asks to write standup notes, daily standup notes, a daily update, or a daily status update. Supports multiple projects, carries over goals from previous standup notes, and checks GitHub activity for completeness.
 metadata:
   author: Cedric Vidal
   version: "1.0.0"
@@ -12,7 +12,7 @@ metadata:
 ## Usage
 
 **USE FOR:**
-- User asks to create a standup, daily standup, standup notes, daily update, or status update
+- User asks to create standup notes, daily standup notes, a daily update, or a status update
 - User asks to update or edit existing standup notes
 
 **DO NOT USE FOR:**
@@ -71,11 +71,11 @@ My Project
 - Look for a folder matching any of these names (case-insensitive): `standups`, `daily-standups`, `daily standups`.
 - If no matching folder exists, create one named `standups/` as a sibling of the config file.
 
-### 3. Resolve standup date
+### 3. Resolve standup notes date
 
 - If the user specifies a date, use that.
 - Otherwise, infer the target date using the current time of day and whether standup notes already exist for today:
-  - **Morning (before noon local time)**: Default to today. The user is likely preparing notes for today's standup.
+  - **Morning (before noon local time)**: Default to today. The user is likely preparing today's standup notes.
   - **Afternoon or later (noon or after)**: Default to the **next business day** (skip weekends). The user is likely drafting tomorrow's notes at the end of the work day. If no notes exist for today, default to today.
 - Present the resolved date to the user and let them confirm or change it before proceeding.
 - If standup notes already exist for the target date, inform the user and ask whether to overwrite or edit them.
@@ -99,7 +99,7 @@ My Project
 - Determine the date of the previous standup notes (from Step 4). Use that as the "since" date for activity queries.
 - **Tool selection**: Check the **GitHub Tool** setting in `standup.config.md`. If set to `gh`, use the `gh` CLI. If set to `mcp`, use GitHub MCP server tools. If not set, prefer the `gh` CLI and fall back to GitHub MCP server tools if `gh` is not available. If the user expresses a preference for one or the other during the conversation, save it to the config under a `## GitHub Tool` section.
 - For each GitHub repository, extract the owner and repo name from the URL, then check:
-  - **Commits**: `gh api` or `list_commits` to find commits since the last standup date.
+  - **Commits**: `gh api` or `list_commits` to find commits since the last standup notes date.
   - **Pull requests**: `gh pr list` or `list_pull_requests`/`search_pull_requests` to find PRs created, merged, or updated since the last standup notes.
   - **Issues**: `gh issue list` or `search_issues` to find issues created, closed, or updated since the last standup notes.
   - **Milestones**: Check for milestone progress if relevant.
@@ -127,7 +127,7 @@ After drafting progress and goals:
 
 - Assemble the standup notes using the sections from the config, plus any additional sections with content (blockers, questions).
 - Section order: Summary (if configured) > Yesterday's Progress > Today's Goals > Blockers / Impediments (if content) > Questions / Discussion (if content).
-- Title format: `# Standup - YYYY-MM-DD`
+- Title format: `# Standup Notes - YYYY-MM-DD`
 - Create the date directory: `<standups-folder>/YYYY-MM-DD/`
 - Write the file as `standup.md` inside that directory.
 - Show the user the final standup notes for confirmation before writing. If they want changes, revise and ask again.
