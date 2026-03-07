@@ -8,7 +8,7 @@ description: >-
   commits, pushes, branch creation, or worktree operations.
 metadata:
   author: Cedric Vidal
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Git Guardrails
@@ -27,11 +27,32 @@ This prevents accidentally committing unrelated files (IDE settings, local confi
 
 **Commit incrementally** — after each logical step, not in one giant batch. Small, focused commits are easier to review, bisect, and revert.
 
+## Pre-Commit Checklist
+
+Before EVERY `git commit` command, verify ALL of the following:
+
+1. **Files are explicitly staged** — no `git add .` or `git add -A`
+2. **No `--amend` flag** — unless the user explicitly asked to amend
+3. **No `--no-verify` flag** — unless the user explicitly asked to skip hooks
+
 ## Amending
 
 **NEVER amend commits** unless the user explicitly asks to amend.
 
 Always create a new commit instead. Amending rewrites history and, if the commit has been pushed, forces collaborators to deal with diverged branches.
+
+### Common Trap: Fixing a Build Error After Committing
+
+When a build or test fails right after committing, the instinct is to amend.
+**Do NOT amend.** Create a new commit:
+
+```bash
+# WRONG — do not do this
+git commit --amend --no-edit
+
+# RIGHT — always a new commit
+git commit -m "fix: correct the issue"
+```
 
 ## Pushing
 
