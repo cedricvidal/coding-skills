@@ -2,10 +2,9 @@
 name: git-guardrails
 type: safety
 description: >-
-  Safety guardrails for git operations. Enforces explicit file staging, prevents
-  force pushes, controls when pushing and amending are allowed, and standardizes
-  branching and worktree conventions. Apply these rules whenever performing git
-  commits, pushes, branch creation, or worktree operations.
+  CRITICAL: This skill MUST be loaded before performing ANY git operation
+  including commits, pushes, branch creation, or worktree operations. Contains
+  mandatory safety guardrails that prevent destructive git mistakes.
 metadata:
   author: Cedric Vidal
   version: "1.0.1"
