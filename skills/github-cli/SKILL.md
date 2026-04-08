@@ -35,7 +35,7 @@ VS Code and other sandboxed terminals can mangle commands with complex quoting. 
 4. **Write complex content to a temp file first**, then reference it:
    ```bash
    # For gh pr create — use --body-file
-   GH_PAGER=cat gh pr create --body-file /tmp/pr-body.md --title 'Add CSV export'
+   GH_PAGER=cat gh pr create --draft --body-file /tmp/pr-body.md --title 'Add CSV export'
 
    # For gh pr edit — --body-file may be ignored; use the API instead
    GH_PAGER=cat gh api repos/OWNER/REPO/pulls/NUMBER -X PATCH -F body=@/tmp/pr-body.md
@@ -91,3 +91,7 @@ When creating new issues or pull requests:
    - Issue type (Task, Bug, Feature, or custom types)
    - Project (if applicable)
 3. **Apply the inferred metadata** to the new issue or PR to ensure proper categorization and tracking.
+4. **Always create pull requests as drafts** — use the `--draft` flag:
+   ```bash
+   GH_PAGER=cat gh pr create --draft --title 'Add CSV export' --body-file /tmp/pr-body.md
+   ```
