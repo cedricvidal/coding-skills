@@ -92,15 +92,25 @@ When the user is happy and asks to merge / submit:
    ```
 2. Create a pull request using `gh`, targeting the `<base-branch>` chosen in step 1:
    ```bash
-   GH_PAGER=cat gh pr create --title '<title>' --body-file <body-file> --base <base-branch> --head <branch-name>
+   GH_PAGER=cat gh pr create --draft --title '<title>' --body-file <body-file> --base <base-branch> --head <branch-name>
    ```
 3. If a plan file was created for this task (e.g. `plan.md`), read it and include its full contents as-is in the PR body.
 4. For long PR descriptions, write the body to a temp file first and use `--body-file`.
-5. After the PR is created, **ask the user if they want to merge it**. Wait for the user's answer before proceeding.
+5. After the PR is created, **ask the user if they want to mark it as ready for review**. Wait for the user's answer before proceeding.
 
-### 6. Merge & clean up
+### 6. Mark ready for review
 
-Whenever the user wants to merge (whether right after PR creation or later), **ask what merge strategy to use**: squash, merge commit, or rebase. Default to **squash**.
+Whenever the user wants to mark the PR as ready (whether right after creation or later):
+
+1. Mark the PR as ready for review:
+   ```bash
+   GH_PAGER=cat gh pr ready <pr-number-or-url>
+   ```
+2. After the PR is marked ready, **ask the user if they want to merge it**. Wait for the user's answer before proceeding.
+
+### 7. Merge & clean up
+
+Whenever the user wants to merge (whether right after marking ready or later), **ask what merge strategy to use**: squash, merge commit, or rebase. Default to **squash**.
 
 1. Merge the PR using the chosen strategy (`--squash`, `--merge`, or `--rebase`):
    ```bash
@@ -112,4 +122,4 @@ Whenever the user wants to merge (whether right after PR creation or later), **a
    git worktree remove <workspace-path>/.worktrees/<task-name>
    ```
 
-> **Note:** Always wait for explicit user confirmation before merging the PR or deleting the worktree. If the user declines at any prompt, stop and leave things as-is.
+> **Note:** Always wait for explicit user confirmation before marking the PR as ready, merging the PR, or deleting the worktree. If the user declines at any prompt, stop and leave things as-is.
