@@ -18,8 +18,9 @@ The **WTM** skill orchestrates a git-worktree-based development workflow. When i
 2. Creates a new worktree and feature branch in isolation.
 3. Implements the requested changes inside the worktree.
 4. Commits incrementally (with merge-guard checks if a PR already exists).
-5. Pushes and creates a pull request via `gh`.
-6. Merges the PR and cleans up the worktree on confirmation.
+5. Pushes and creates a **draft** pull request via `gh`.
+6. Marks the PR as ready for review on user confirmation.
+7. Merges the PR and cleans up the worktree on confirmation.
 
 See [skills/wtm/SKILL.md](skills/wtm/SKILL.md) for the full workflow definition.
 
@@ -61,5 +62,19 @@ The **GitHub CLI** skill provides best practices for using the `gh` CLI. It cove
 - A batch GraphQL query to fetch all metadata in a single call
 - Required token scopes for private vs. public repositories
 - Inferring and applying metadata when creating issues and PRs
+- Always creating pull requests as drafts (`--draft`)
 
 See [skills/github-cli/SKILL.md](skills/github-cli/SKILL.md) for the full reference.
+
+### PR Review
+
+The **PR Review** skill provides a structured workflow for reviewing pull requests. It covers:
+
+- Fetching PR metadata before starting the review
+- Setting up a worktree for isolated review
+- Diffing against the merge base (not `origin/main`) to avoid false positives
+- Reading and understanding changed code, running tests
+- Drafting the review locally and presenting it to the user before posting
+- Posting the review only after explicit user approval
+
+See [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) for the full workflow definition.
