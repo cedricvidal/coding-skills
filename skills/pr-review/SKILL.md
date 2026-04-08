@@ -86,20 +86,3 @@ GH_PAGER=cat gh pr review <number> --request-changes --body-file /tmp/pr-review.
 # or
 GH_PAGER=cat gh pr review <number> --comment --body-file /tmp/pr-review.md
 ```
-
-## Common Mistakes
-
-### False finding: "this PR renames X to Y"
-
-If a value was already changed on the branch's base and then main reverted it, the diff against latest `origin/main` will show the change as if the PR introduced it. **Always verify against the merge base.**
-
-### Bundled unrelated changes
-
-Before flagging changes as "unrelated to the PR", verify they are actually from the PR's commit(s) and not inherited from the merge base. Use:
-
-```bash
-MERGE_BASE=$(git merge-base origin/main HEAD)
-git diff $MERGE_BASE..HEAD -- <file>
-```
-
-If the file shows no diff against the merge base, the change is not from this PR.
