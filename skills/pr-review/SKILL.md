@@ -86,3 +86,9 @@ GH_PAGER=cat gh pr review <number> --request-changes --body-file /tmp/pr-review.
 # or
 GH_PAGER=cat gh pr review <number> --comment --body-file /tmp/pr-review.md
 ```
+
+## 7. NEVER delete a review without explicit user confirmation
+
+**CRITICAL:** Deleting a pending or submitted review is a destructive, irreversible action. **NEVER** delete a review (via `deletePullRequestReview` mutation or any other method) without first asking the user for explicit confirmation and explaining what will be deleted.
+
+If a pending review blocks submitting a new one, inform the user and ask whether they want to delete it — do NOT delete it automatically.
