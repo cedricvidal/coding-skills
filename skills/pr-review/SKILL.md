@@ -23,11 +23,15 @@ GH_PAGER=cat gh pr view <number> --json title,body,headRefName,baseRefName,state
 
 ## 2. Set up a worktree for review
 
-```bash
-git fetch origin <head-branch>
-git worktree add .worktrees/review-<short-name> <head-branch>
-cd .worktrees/review-<short-name>
-```
+First, determine whether the current workspace already contains the PR's repository:
+
+- **If yes** — create a worktree directly:
+  ```bash
+  git fetch origin <head-branch>
+  git worktree add .worktrees/review-<short-name> <head-branch>
+  cd .worktrees/review-<short-name>
+  ```
+- **If no** — check whether the repo is cloned elsewhere in the workspace (e.g. a monorepo with multiple top-level folders). If the location is obvious from context, `cd` there. If not, **ask the user** where to find or clone the repo before proceeding.
 
 ## 3. Diff against the merge base — NOT against latest `origin/main`
 
