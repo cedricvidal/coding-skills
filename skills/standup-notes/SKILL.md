@@ -101,6 +101,7 @@ My Project
 - For each GitHub repository, extract the owner and repo name from the URL, then check:
   - **Commits**: `gh api` or `list_commits` to find commits since the last standup notes date.
   - **Pull requests**: `gh pr list` or `list_pull_requests`/`search_pull_requests` to find PRs created, merged, or updated since the last standup notes.
+  - **Reviews**: Find PRs that were merged by others but reviewed by the user. Use `gh search prs --reviewed-by=@me --merged-at=SINCE_DATE..TARGET_DATE --repo=OWNER/REPO` (with `gh`) or search for PRs with `reviewed-by:@me` (with MCP). Exclude PRs already captured above (i.e. PRs authored by the user). These represent review contributions that are worth mentioning in standup notes.
   - **Issues**: `gh issue list` or `search_issues` to find issues created, closed, or updated since the last standup notes.
   - **Milestones**: Check for milestone progress if relevant.
 - Compile a list of noteworthy activity the user may have missed.
