@@ -84,7 +84,8 @@ My Project
 
 - List date folders in the standups directory, sorted descending.
 - Find the most recent standup notes **before** the target date.
-- Read that file's `standup.md` and extract the **"Today's Goals"** section content.
+- The standup file may not be named `standup.md`. List the contents of the date folder and read whichever `.md` file is present.
+- Extract the **"Today's Goals"** section content from that file.
 - Use the extracted goals as a **draft** for the new standup notes' **"Yesterday's Progress"** section.
 - Present this draft to the user and ask:
   - What did you actually accomplish from these goals?
@@ -100,8 +101,8 @@ My Project
 - **Tool selection**: Check the **GitHub Tool** setting in `standup.config.md`. If set to `gh`, use the `gh` CLI. If set to `mcp`, use GitHub MCP server tools. If not set, prefer the `gh` CLI and fall back to GitHub MCP server tools if `gh` is not available. If the user expresses a preference for one or the other during the conversation, save it to the config under a `## GitHub Tool` section.
 - For each GitHub repository, extract the owner and repo name from the URL, then check:
   - **Commits**: `gh api` or `list_commits` to find commits since the last standup notes date.
-  - **Pull requests**: `gh pr list` or `list_pull_requests`/`search_pull_requests` to find PRs created, merged, or updated since the last standup notes.
-  - **Reviews**: Find PRs that were merged by others but reviewed by the user. Use `gh search prs --reviewed-by=@me --merged-at=SINCE_DATE..TARGET_DATE --repo=OWNER/REPO` (with `gh`) or search for PRs with `reviewed-by:@me` (with MCP). Exclude PRs already captured above (i.e. PRs authored by the user). These represent review contributions that are worth mentioning in standup notes.
+  - **Pull requests**: `gh pr list` or `list_pull_requests`/`search_pull_requests` to find PRs created, merged, or updated since the last standup notes. **Verify authorship**: filter PRs by the user's GitHub username. Do not attribute PRs authored by others as the user's own work.
+  - **Reviews**: Find PRs that were merged by others but reviewed by the user. Use `gh search prs --reviewed-by=@me --merged-at=SINCE_DATE..TARGET_DATE --repo=OWNER/REPO` (with `gh`) or search for PRs with `reviewed-by:@me` (with MCP). Exclude PRs already captured above (i.e. PRs authored by the user). These represent review contributions and should appear in a separate **"Code Reviews"** subsection, not mixed into the user's own progress.
   - **Issues**: `gh issue list` or `search_issues` to find issues created, closed, or updated since the last standup notes.
   - **Milestones**: Check for milestone progress if relevant.
 - Compile a list of noteworthy activity the user may have missed.
