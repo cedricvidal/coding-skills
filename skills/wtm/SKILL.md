@@ -22,15 +22,37 @@ metadata:
 
 When the user asks to perform a coding task using the **WTM method**, follow this end-to-end workflow:
 
-### 1. Determine base branch
+### 1. Detect context and determine base branch
+
+First, check whether the session is already running inside a linked worktree:
+
+```bash
+git rev-parse --git-dir && git rev-parse --git-common-dir
+```
+
+If the two paths differ, the session is inside a linked worktree — this happens when a coding agent (e.g. GitHub Copilot coding agent) automatically provisions a worktree at session start, before any files have been edited.
+
+#### Already in a linked worktree
+
+- Set `<worktree-path>` = current working directory.
+- Set `<branch-name>` = `git branch --show-current`.
+- Determine `<base-branch>` for the PR:
+  - Try the upstream tracking branch: `git rev-parse --abbrev-ref @{upstream}` → strip the `origin/` prefix.
+  - If that fails or is ambiguous, ask the user (suggest `main` as the default).
+- **Skip Step 2** — go directly to Step 3.
+
+#### Not in a worktree
 
 - Check the current branch (`git branch --show-current`).
-- If the current branch is a mainline branch (`main`, `dev`, `integration`, or similar), use it as the **base branch**.
+- If it is a mainline branch (`main`, `dev`, `integration`, or similar), use it as the **base branch**.
+- If it is a feature/fix branch, **ask the user which branch to create the new branch off of** (suggest `main` as the default). Wait for the user's answer.
 - Always fetch and use the remote tracking branch (e.g. `origin/main`) to ensure the worktree is created off the latest code.
-- If the current branch is a feature/fix branch, **ask the user which branch to create the new branch off of** (suggest `main` as the default). Wait for the user's answer.
 - **Remember the chosen `<base-branch>`** — it will be used later as the PR base.
+- Continue to Step 2.
 
 ### 2. Create worktree & branch
+
+> **Skip this step if already in a linked worktree (detected in Step 1).**
 
 - Derive a short `<task-name>` from the user's request (e.g. `fix-login-bug`, `add-export-csv`).
 - Fetch the latest from origin before creating the worktree:
@@ -117,9 +139,10 @@ Whenever the user wants to merge (whether right after marking ready or later), *
    GH_PAGER=cat gh pr merge <pr-number-or-url> --squash --delete-branch
    ```
 2. After a successful merge, **ask the user if they want to delete the worktree**. Wait for the user's answer before proceeding.
-3. If the user confirms, remove the worktree:
+   > ⚠️ If the session is running inside the worktree (detected in Step 1), warn the user that deleting it will terminate the session. In that case, default the suggestion to **not delete**.
+3. If the user confirms, remove the worktree (run this from a directory **outside** the worktree):
    ```bash
-   git worktree remove <workspace-path>/.worktrees/<task-name>
+   git worktree remove <worktree-path>
    ```
 
 > **Note:** Always wait for explicit user confirmation before marking the PR as ready, merging the PR, or deleting the worktree. If the user declines at any prompt, stop and leave things as-is.
