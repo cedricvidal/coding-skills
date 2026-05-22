@@ -92,3 +92,32 @@ GH_PAGER=cat gh pr review <number> --comment --body-file /tmp/pr-review.md
 **CRITICAL:** Deleting a pending or submitted review is a destructive, irreversible action. **NEVER** delete a review (via `deletePullRequestReview` mutation or any other method) without first asking the user for explicit confirmation and explaining what will be deleted.
 
 If a pending review blocks submitting a new one, inform the user and ask whether they want to delete it — do NOT delete it automatically.
+
+## 8. Review techniques for complex PRs
+
+### Data structure comparison across layers
+
+For PRs that modify types or schemas, compare structures across boundaries (API input → API response → MongoDB/storage) and across time (main vs PR). This surfaces redundancy, unnecessary complexity, and dead fields that code-level review alone misses.
+
+### Trace data flow end-to-end
+
+Follow data from client input through API logic to storage to queue/consumers. This reveals:
+- Dead fields with no downstream consumer
+- Redundant data duplicated across layers
+- Design inconsistencies between input and output contracts
+
+### Constructive counter-proposals
+
+Beyond identifying issues, propose concrete alternative designs with a clear rationale. Show the "before and after" so the author can evaluate the tradeoff.
+
+### "Table it" as valid feedback
+
+When a sub-feature isn't fully baked (e.g. a CLI UX that doesn't match the project's idiom), suggest deferring it to a follow-up rather than blocking the whole PR or accepting half-baked work.
+
+### Iterate fully on the draft before posting
+
+For complex reviews, keep refining the draft locally through multiple rounds of analysis until you have one cohesive comment that covers: the problem, the counter-proposal, and a summary table showing current → proposed → suggested. Avoid posting incremental comments that force the author to piece together feedback from multiple threads.
+
+### Include a data structure summary for schema-changing PRs
+
+When a PR modifies types/schemas, the review draft should include a comparison table showing the structures on main, as proposed, and as suggested — scoped only to the fields relevant to the discussion. This gives the author immediate clarity on the cumulative impact of the feedback.
