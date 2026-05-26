@@ -4,7 +4,7 @@ type: utility
 description: Creates daily standup notes. Use when the user asks to write standup notes, daily standup notes, a daily update, or a daily status update. Supports multiple projects, carries over goals from previous standup notes, and checks GitHub activity for completeness.
 metadata:
   author: Cedric Vidal
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Standup Notes
