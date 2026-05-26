@@ -102,6 +102,7 @@ My Project
 - For each GitHub repository, extract the owner and repo name from the URL, then check:
   - **Commits**: `gh api` or `list_commits` to find commits since the last standup notes date.
   - **Pull requests**: `gh pr list` or `list_pull_requests`/`search_pull_requests` to find PRs created, merged, or updated since the last standup notes. **Verify authorship**: filter PRs by the user's GitHub username. Do not attribute PRs authored by others as the user's own work.
+  - **PR/issue descriptions (mandatory)**: For every PR and issue discovered, fetch the full body/description (e.g., `gh pr view <number> --repo OWNER/REPO --json title,body`). Do not rely solely on titles when writing standup entries. The description provides critical context for accurate, detailed notes.
   - **Reviews**: Find PRs that were merged by others but reviewed by the user. Use `gh search prs --reviewed-by=@me --merged-at=SINCE_DATE..TARGET_DATE --repo=OWNER/REPO` (with `gh`) or search for PRs with `reviewed-by:@me` (with MCP). Exclude PRs already captured above (i.e. PRs authored by the user). These represent review contributions and should appear in a separate **"Code Reviews"** subsection, not mixed into the user's own progress.
   - **Issues**: `gh issue list` or `search_issues` to find issues created, closed, or updated since the last standup notes.
   - **Milestones**: Check for milestone progress if relevant.
@@ -150,3 +151,16 @@ When no `standup.config.md` exists for a project:
 5. Create the `standup.config.md` file with the provided information.
 6. Create the standups folder if it doesn't exist.
 7. Continue with the normal workflow from Step 3.
+
+## Writing Guidelines
+
+1. **Neutral tone**: Do not use self-congratulatory language ("Major week", "Great progress", "Huge milestone", etc.). State facts plainly.
+2. **Strategic ordering**: Order sections by strategic importance to the user's current goals, not by volume of PRs or merge status. Ask the user what their priority/headline item is.
+3. **Summary format**: If there are fewer than 3 updates, a prose paragraph is fine. For 3 or more updates, use a bullet point list.
+4. **Summary ordering matches sections**: The order of items in the Summary should match the order of detailed sections below.
+5. **Ongoing work phrasing**: For PRs/work still in progress, use present tense ("Integrating...") and label as "in progress" or "in review" rather than past tense with "(open)".
+6. **Architectural significance**: When work introduces infrastructure or a framework (not just a feature), highlight the extensibility and future use cases, not just the immediate deliverable.
+7. **Name key libraries/tools**: Mention important libraries or tools used (e.g., `atifact`, `esbuild`) in both the summary and detail sections.
+8. **Include actual content for branding changes**: When mentioning tagline or messaging updates, include the actual text.
+9. **Include deployment/distribution context**: Mention where things are deployed or distributed (e.g., "behind EMU", "via GitHub Releases") when it adds meaningful context.
+10. **Don't assume all GitHub activity is noteworthy**: Present discovered GitHub activity to the user for confirmation. Don't include items the user hasn't confirmed, especially RFCs or exploratory work.
