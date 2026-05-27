@@ -78,3 +78,15 @@ The **PR Review** skill provides a structured workflow for reviewing pull reques
 - Posting the review only after explicit user approval
 
 See [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) for the full workflow definition.
+
+### PR Ready
+
+The **PR Ready** skill automates getting a draft PR finalized for review. It:
+
+1. Monitors CI continuously — watches the run, diagnoses failures, fixes code, pushes, and repeats until green.
+2. Rewrites the PR title and description from the merge-base diff, summarizing the net change (ignoring back-and-forth commits).
+3. Marks the PR as ready for review and asks the user who should be assigned as reviewer.
+
+Also handles edge cases like token scope errors, stuck CI, flaky tests, and merge conflicts.
+
+See [skills/pr-ready/SKILL.md](skills/pr-ready/SKILL.md) for the full workflow definition.
