@@ -2,10 +2,10 @@
 name: pr-ready
 type: workflow
 description: >-
-  Finalize a draft PR for review: monitor CI until green (fixing failures along
-  the way), rewrite the PR title and description to reflect the final diff, then
-  mark the PR as ready for review. Use when the user says "get this PR ready",
-  "monitor CI and fix issues", "finalize the PR", or similar.
+  Use when the user wants to finalize a draft PR for review. Triggers include:
+  "get this PR ready", "monitor CI and fix issues", "finalize the PR",
+  "mark as ready for review", or any request to shepherd a PR from draft to
+  review-ready state.
 metadata:
   author: Cedric Vidal
   version: "1.0.0"
