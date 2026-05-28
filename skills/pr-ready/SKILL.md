@@ -97,8 +97,6 @@ Write a title and description that accurately reflect the net change. Key princi
 
 - Describe the final state, not the journey. If back-and-forth happened in commits, omit it.
 - Retain context from the conversation — motivations, design rationale, constraints, or future work the user mentioned that aren't apparent from the diff alone.
-- If the PR resolves an issue, include `Resolves owner/repo#N` on its own line for auto-closing.
-- If the repo has a PR template (`.github/PULL_REQUEST_TEMPLATE.md`), follow its structure.
 
 ### 2.4 Update the PR
 
