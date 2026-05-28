@@ -124,16 +124,16 @@ gh pr ready <number>
 
 > "The PR is now ready for review. Who should I request a review from?"
 
-If the user provides a name (not a GitHub username), look up collaborators and their display names:
+If the user provides a name (not a GitHub username), look up collaborators with their display names:
 
 ```bash
-# Get logins, then fetch display names
-for login in $(gh api /repos/<owner>/<repo>/collaborators --jq '.[].login'); do
-  gh api /users/$login --jq '{login, name}'
+gh api /repos/<owner>/<repo>/collaborators --jq '.[].login' | while read login; do
+  name=$(gh api /users/$login --jq '.name // "N/A"')
+  printf "%-30s %s\n" "$login" "$name"
 done
 ```
 
-Match the name to a username and confirm with the user if ambiguous.
+The collaborators endpoint does NOT include display names — you must call `/users/<login>` for each to get the `name` field. Present the list to the user and confirm the match.
 
 ### 3.3 Request the review
 
