@@ -124,10 +124,13 @@ gh pr ready <number>
 
 > "The PR is now ready for review. Who should I request a review from?"
 
-If the user provides a name (not a GitHub username), look up collaborators:
+If the user provides a name (not a GitHub username), look up collaborators and their display names:
 
 ```bash
-gh api /repos/<owner>/<repo>/collaborators --jq '.[].login'
+# Get logins, then fetch display names
+for login in $(gh api /repos/<owner>/<repo>/collaborators --jq '.[].login'); do
+  gh api /users/$login --jq '{login, name}'
+done
 ```
 
 Match the name to a username and confirm with the user if ambiguous.
