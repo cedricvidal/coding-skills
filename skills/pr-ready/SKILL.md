@@ -94,7 +94,6 @@ This shows the net effect of the PR — back-and-forth commits that cancel each 
 ### 2.3 Write the title
 
 - Under 80 characters.
-- Use conventional commit prefix (`fix:`, `feat:`, `refactor:`, `docs:`, etc.).
 - Describe the outcome, not the process.
 
 ### 2.4 Write the description
