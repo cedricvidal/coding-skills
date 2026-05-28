@@ -89,6 +89,7 @@ This shows the net effect of the PR — back-and-forth commits that cancel each 
 - Read the diff stat and key file changes.
 - Focus on the **net result**, not the commit history. If commits A, B, C introduced something and commit D reverted half of it, describe only what remains.
 - Identify: what problem is solved, what approach was taken, what key decisions were made.
+- **Incorporate context from the conversation.** The user may have explained motivations, constraints, or design rationale during the session that are not apparent from the diff alone. These details belong in the PR description.
 
 ### 2.3 Write the title
 
@@ -96,16 +97,13 @@ This shows the net effect of the PR — back-and-forth commits that cancel each 
 - Use conventional commit prefix (`fix:`, `feat:`, `refactor:`, `docs:`, etc.).
 - Describe the outcome, not the process.
 
-**Good:** `fix: map _id to id at API boundary for consistent responses`
-**Bad:** `fix: various changes to standardize id field after multiple attempts`
-
 ### 2.4 Write the description
 
 Structure:
 
-1. **Motivation** — 1-2 sentences on why this change exists. Link the source issue if applicable.
+1. **Motivation** — 1-2 sentences on why this change exists. Include context the user provided about the problem or goal, even if it's not visible in the code. Link the source issue if applicable.
 2. **Approach** — summarize the key design decisions and how pieces fit together. Don't list files.
-3. **Key decisions** — call out non-obvious trade-offs, temporary workarounds, or areas needing careful review.
+3. **Key decisions** — call out non-obvious trade-offs, temporary workarounds, or areas needing careful review. Include rationale the user shared for why certain approaches were chosen or rejected.
 4. **Scope** — one line: files changed count, tests passing.
 
 Guidelines:
@@ -113,6 +111,7 @@ Guidelines:
 - Use plain ASCII punctuation (no smart quotes, em dashes).
 - If back-and-forth happened in the commit history (e.g., a schema rename that was later reverted), do NOT mention it — describe only the final state.
 - If the PR resolves an issue, include `Resolves owner/repo#N` on its own line for auto-closing.
+- **Retain user-provided context** — if the user explained why something was done a certain way, or called out future work, or provided acceptance criteria, include that in the description even if the diff alone wouldn't tell that story.
 
 ### 2.5 Update the PR
 
