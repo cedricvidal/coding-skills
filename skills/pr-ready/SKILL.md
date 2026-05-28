@@ -120,11 +120,7 @@ gh pr ready <number>
 
 ### 3.2 Ask the user who should review
 
-**ALWAYS ask the user** who should be assigned as reviewer. Do not assume. Present the question clearly:
-
-> "The PR is now ready for review. Who should I request a review from?"
-
-If the user provides a name (not a GitHub username), look up collaborators with their display names:
+First, fetch the list of collaborators with their display names and present it to the user:
 
 ```bash
 gh api /repos/<owner>/<repo>/collaborators --jq '.[].login' | while read login; do
@@ -133,7 +129,11 @@ gh api /repos/<owner>/<repo>/collaborators --jq '.[].login' | while read login; 
 done
 ```
 
-The collaborators endpoint does NOT include display names — you must call `/users/<login>` for each to get the `name` field. Present the list to the user and confirm the match.
+The collaborators endpoint does NOT include display names — you must call `/users/<login>` for each to get the `name` field.
+
+Present the list and ask:
+
+> "The PR is now ready for review. Who should I request a review from?"
 
 ### 3.3 Request the review
 
