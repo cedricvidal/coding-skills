@@ -47,22 +47,25 @@ For each failed job:
    ```bash
    gh run view <run-id> --log-failed 2>&1 | tail -80
    ```
-2. **Identify the root cause** — TypeScript errors, test failures, lint violations, Docker build issues, etc.
+2. **Identify the root cause** from the logs.
 3. **Fix the code** — make targeted changes to resolve the failure.
 4. **Commit and push** — create a new commit (never amend) and push.
 5. **Repeat** — wait for the new CI run and check again.
 
 ### 1.4 Non-obvious checks
 
-Some checks don't always surface as CI failures but should still be verified:
+Beyond the GitHub Actions workflow runs, also check for GitHub status checks and any required checks that may not appear as workflow jobs. Use:
 
-- **OpenAPI snapshot drift** — if the repo has snapshot tests for API schemas, regenerate and commit if stale.
-- **Type checking across packages** — monorepo builds may fail in packages that depend on the one you changed, even if your package builds fine in isolation.
-- **Integration tests** — these may be in separate jobs that only run on certain file changes.
+```bash
+gh api repos/<owner>/<repo>/commits/<sha>/check-runs --jq '.check_runs[] | {name, status, conclusion}'
+gh api repos/<owner>/<repo>/commits/<sha>/status --jq '.statuses[] | {context, state, description}'
+```
+
+Some checks are external (e.g., deployment gates, third-party integrations) and won't show up in `gh run list`.
 
 ### 1.5 Loop until green
 
-Repeat 1.2–1.4 until ALL CI jobs pass (or are skipped by design). Non-blocking jobs (e.g., optional Docker image builds for unrelated platforms) can be noted but should not block the workflow.
+Repeat 1.2–1.4 until ALL required checks pass (or are skipped by design). Non-required checks that remain pending or failed can be noted but should not block the workflow.
 
 ---
 
