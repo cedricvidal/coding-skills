@@ -73,11 +73,10 @@ Repeat 1.2–1.4 until ALL required checks pass (or are skipped by design). Non-
 
 ### 2.1 Compute the net diff
 
-**CRITICAL:** Diff against the merge base, not `origin/main` directly:
+**CRITICAL:** Diff against the merge base, not the base branch tip directly. Use the GitHub API to get the merge base (avoids needing a full fetch):
 
 ```bash
-git fetch origin main
-MERGE_BASE=$(git merge-base origin/main HEAD)
+MERGE_BASE=$(gh api repos/<owner>/<repo>/compare/<base>...<head> --jq '.merge_base_commit.sha')
 git diff $MERGE_BASE..HEAD --stat
 ```
 
