@@ -91,27 +91,16 @@ This shows the net effect of the PR — back-and-forth commits that cancel each 
 - Identify: what problem is solved, what approach was taken, what key decisions were made.
 - **Incorporate context from the conversation.** The user may have explained motivations, constraints, or design rationale during the session that are not apparent from the diff alone. These details belong in the PR description.
 
-### 2.3 Write the title
+### 2.3 Write the title and description
 
-- Describe the outcome, not the process.
+Write a title and description that accurately reflect the net change. Key principles:
 
-### 2.4 Write the description
-
-Structure:
-
-1. **Motivation** — 1-2 sentences on why this change exists. Include context the user provided about the problem or goal, even if it's not visible in the code. Link the source issue if applicable.
-2. **Approach** — summarize the key design decisions and how pieces fit together. Don't list files.
-3. **Key decisions** — call out non-obvious trade-offs, temporary workarounds, or areas needing careful review. Include rationale the user shared for why certain approaches were chosen or rejected.
-4. **Scope** — one line: files changed count, tests passing.
-
-Guidelines:
-- Keep length proportional to change size.
-- Use plain ASCII punctuation (no smart quotes, em dashes).
-- If back-and-forth happened in the commit history (e.g., a schema rename that was later reverted), do NOT mention it — describe only the final state.
+- Describe the final state, not the journey. If back-and-forth happened in commits, omit it.
+- Retain context from the conversation — motivations, design rationale, constraints, or future work the user mentioned that aren't apparent from the diff alone.
 - If the PR resolves an issue, include `Resolves owner/repo#N` on its own line for auto-closing.
-- **Retain user-provided context** — if the user explained why something was done a certain way, or called out future work, or provided acceptance criteria, include that in the description even if the diff alone wouldn't tell that story.
+- If the repo has a PR template (`.github/PULL_REQUEST_TEMPLATE.md`), follow its structure.
 
-### 2.5 Update the PR
+### 2.4 Update the PR
 
 ```bash
 gh api repos/<owner>/<repo>/pulls/<number> -X PATCH \
