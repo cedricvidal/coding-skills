@@ -73,10 +73,12 @@ Repeat 1.2–1.4 until ALL required checks pass (or are skipped by design). Non-
 
 ### 2.1 Compute the net diff
 
-**CRITICAL:** Diff against the merge base, not the base branch tip directly. Use the GitHub API to get the merge base (avoids needing a full fetch):
+**CRITICAL:** Diff against the merge base, not the base branch tip directly. First, get the PR's base branch and merge base from the GitHub API:
 
 ```bash
-MERGE_BASE=$(gh api repos/<owner>/<repo>/compare/<base>...<head> --jq '.merge_base_commit.sha')
+# Get the PR's base ref and merge base commit
+PR_BASE=$(gh api repos/<owner>/<repo>/pulls/<number> --jq '.base.ref')
+MERGE_BASE=$(gh api repos/<owner>/<repo>/compare/${PR_BASE}...<head-branch> --jq '.merge_base_commit.sha')
 git diff $MERGE_BASE..HEAD --stat
 ```
 
