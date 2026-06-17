@@ -1,14 +1,9 @@
 ---
 name: attention-cues
-description: >
-  Inject on-screen visual-attention devices into Playwright UX recordings and
-  screenshots so the viewer's eye is steered to the exact element each beat is
-  about. Provides a drop-in `window.__demo` toolkit: a caption HUD, a magnetised
-  highlight ring, a spotlight scrim that dims the rest of the page, a label badge
-  that names the target, a synthetic click (so toggles actuate on camera), and
-  smooth-scroll framing. Use this skill whenever you record a walkthrough video,
-  record "beats", or capture annotated screenshots of a running web app — it is
-  the companion to the `screen-capture` skill. Trigger on: "record beats",
+description: >-
+  Inject visual-attention cues (highlight ring, spotlight scrim, caption HUD,
+  label badge, synthetic click, smooth scroll) into Playwright UX recordings
+  and screenshots. Companion to `screen-capture`. Trigger on: "record beats",
   "walkthrough video", "demo video", "annotated screenshots", "highlight the UI",
   "point the viewer at X", "make a captioned recording".
 compatibility: macOS or Linux, Node 18+, Playwright (any version in the workspace)
