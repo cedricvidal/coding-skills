@@ -90,3 +90,18 @@ The **PR Ready** skill automates getting a draft PR finalized for review. It:
 Also handles edge cases like token scope errors, stuck CI, flaky tests, and merge conflicts.
 
 See [skills/pr-ready/SKILL.md](skills/pr-ready/SKILL.md) for the full workflow definition.
+
+### Attention Cues
+
+The **Attention Cues** skill injects visual attention devices into Playwright UX recordings and screenshots. It provides a drop-in `window.__demo` toolkit with six devices:
+
+- **Caption HUD** — floating subtitle pill for narration
+- **Magnetised ring** — accent outline that tracks the target element through scroll/layout
+- **Spotlight scrim** — dims the rest of the page to make the highlighted element pop
+- **Label badge** — short noun-phrase tag above the target
+- **Synthetic click** — full pointer event sequence so toggles actuate on camera
+- **Smooth scroll** — centers the target before highlighting
+
+Companion to the `screen-capture` skill. Use whenever recording walkthrough videos, beat sequences, or capturing annotated screenshots.
+
+See [skills/attention-cues/SKILL.md](skills/attention-cues/SKILL.md) for the full reference.
