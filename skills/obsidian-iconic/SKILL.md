@@ -2,14 +2,11 @@
 name: obsidian-iconic
 type: reference
 description: >-
-  Configure icons and colors for notes, folders, and tags in an Obsidian vault
-  through the Iconic community plugin. Covers the data.json layout, rule-based
-  icons with the full condition vocabulary (name, path, extension, tags, links,
-  headings, dates, the clock, and frontmatter properties, with per-type
-  operators), Lucide icon ids, the named color palette, reloading the plugin
-  after editing its config externally, and verifying the result through the
-  Obsidian CLI. Use whenever the user asks to add or change icons in an
-  Obsidian vault that uses Iconic.
+  Configure icons and colors in an Obsidian vault via the Iconic community
+  plugin. Trigger on: "icon", "color", "Iconic", "lucide", "file icon",
+  "folder icon", "tag icon", "icon rule" in an Obsidian vault context. Do NOT
+  use for: the Iconize plugin, icon frontmatter properties, emoji/status
+  columns in Bases formulas, or icons outside Obsidian.
 metadata:
   author: Cedric Vidal
   version: "1.0.0"
