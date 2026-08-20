@@ -108,7 +108,7 @@ See [skills/attention-cues/SKILL.md](skills/attention-cues/SKILL.md) for the ful
 
 ### Obsidian Iconic
 
-The **Obsidian Iconic** skill is a reference for configuring the [Iconic](https://github.com/gfxholo/iconic) Obsidian plugin programmatically. It covers:
+The **Obsidian Iconic** skill is a reference for configuring the [Iconic](https://github.com/gfxholo/iconic) Obsidian plugin programmatically. It triggers on icon and color work in an Obsidian vault (file, folder, and tag icons, icon rules, Lucide ids), and stands down for the Iconize plugin, icon frontmatter properties, emoji columns in Bases formulas, and anything outside Obsidian. It covers:
 
 - The `data.json` layout inside `.obsidian/plugins/iconic/`
 - Rule-based icons instead of per-file icons, with the full condition vocabulary: file and folder rules matching on name, path, extension, tags, links, headings, dates, the clock, or frontmatter properties, with per-value-type operators
