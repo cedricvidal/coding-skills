@@ -105,3 +105,15 @@ The **Attention Cues** skill injects visual attention devices into Playwright UX
 Companion to the `screen-capture` skill. Use whenever recording walkthrough videos, beat sequences, or capturing annotated screenshots.
 
 See [skills/attention-cues/SKILL.md](skills/attention-cues/SKILL.md) for the full reference.
+
+### Obsidian Iconic
+
+The **Obsidian Iconic** skill is a reference for configuring the [Iconic](https://github.com/gfxholo/iconic) Obsidian plugin programmatically. It triggers on icon and color work in an Obsidian vault (file, folder, and tag icons, icon rules, Lucide ids), and stands down for the Iconize plugin, icon frontmatter properties, emoji columns in Bases formulas, and anything outside Obsidian. It covers:
+
+- The `data.json` layout inside `.obsidian/plugins/iconic/`
+- Rule-based icons instead of per-file icons, with the full condition vocabulary: file and folder rules matching on name, path, extension, tags, links, headings, dates, the clock, or frontmatter properties, with per-value-type operators
+- Lucide icon ids (`lucide-*`) and the named color palette
+- Reloading the plugin via the Obsidian CLI after editing its config externally, so the in-memory settings don't overwrite the edit
+- Verifying the loaded rules with `obsidian eval`, and CLI gotchas (Electron stderr noise, sandboxed terminals)
+
+See [skills/obsidian-iconic/SKILL.md](skills/obsidian-iconic/SKILL.md) for the full reference.
