@@ -85,8 +85,8 @@ Never speak a success claim before the expected outcome has been verified.
 - If transcript echo is enabled, print the exact spoken message using the host's
   required echo format.
 - If no speech capability is available, tell the user once that spoken progress
-  is unavailable, then stop. Do not continue the task or substitute text
-  progress updates.
+  is unavailable, stop attempting spoken updates, and continue the requested
+  task. Do not substitute text-only progress updates for the unavailable speech.
 
 ## Content Safety and Clarity
 
