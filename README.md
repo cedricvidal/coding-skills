@@ -10,6 +10,21 @@ npx skills add cedricvidal/coding-skills
 
 ## Skills
 
+### Spoken Progress
+
+The **Spoken Progress** skill keeps users informed during every non-trivial task
+without requiring them to watch the transcript. It requires:
+
+- A concise spoken kickoff before substantive work
+- Spoken updates at major phase changes, material findings, delays, or blockers
+- A spoken final summary only after the outcome has been verified
+- High-signal narration that avoids secrets, large code blocks, and routine tool calls
+
+It activates for multi-step work, investigation, research, tool use, code or
+document changes, browser automation, and validation.
+
+See [skills/spoken-progress/SKILL.md](skills/spoken-progress/SKILL.md) for the full workflow definition.
+
 ### WTM — Worktree PR Merge
 
 The **WTM** skill orchestrates a git-worktree-based development workflow. When invoked, it:
