@@ -2,11 +2,9 @@
 name: spoken-progress
 type: utility
 description: >-
-  MUST activate whenever conducting any non-trivial task. Speak concise progress
-  updates aloud at the start and at meaningful milestones, then speak the final
-  verified outcome. Use for multi-step work, investigation, research, tool use,
-  code or document changes, browser automation, and tasks involving waiting or
-  validation. Do not use for a simple factual answer or brief confirmation.
+  Provides spoken progress updates and final summaries for non-trivial tasks.
+  Use for multi-step, tool-assisted, investigative, editing, automation, or
+  validation work.
 metadata:
   author: Cedric Vidal
   version: "1.0.0"
@@ -105,4 +103,3 @@ Never speak a success claim before the expected outcome has been verified.
 - [ ] No sensitive or unnecessarily verbose content was spoken.
 - [ ] Outcome was verified.
 - [ ] Final result and any real limitation were spoken aloud.
-
