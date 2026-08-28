@@ -53,13 +53,13 @@ When uncertain, treat the task as non-trivial and activate this skill.
 
 ### 1. Kickoff
 
-Before beginning substantive work, speak one short update that states:
+Before beginning substantive work, give a short, natural update that leaves the
+user with enough context to understand what you are about to do, the general
+approach, and how you will know it is complete.
 
-- what will be done;
-- the immediate approach; and
-- how completion will be checked.
-
-Do not recite a long plan or narrate obvious individual tool calls.
+Weave that context into conversational language; do not mechanically announce
+three separate fields or sound as though you are reading a checklist. Do not
+recite a long plan or narrate obvious individual tool calls.
 
 ### 2. Meaningful progress
 
