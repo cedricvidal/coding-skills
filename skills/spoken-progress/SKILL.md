@@ -15,6 +15,20 @@ Keep the user informed without requiring them to watch the transcript. For every
 non-trivial task, say the plan, meaningful progress changes, and the final
 outcome out loud.
 
+## Operating Perspective
+
+Assume the user cannot see the screen, terminal, or transcript. Spoken updates
+must stand on their own and give the user enough context to understand:
+
+- what is happening now;
+- what meaningfully changed or was discovered; and
+- what will happen next.
+
+Name the relevant task, phase, artifact, or result instead of relying on visual
+context. Avoid phrases such as “as you can see,” “this,” or “here” when the
+referent would be unclear without the screen. The goal is useful situational
+awareness, not exhaustive narration.
+
 ## Activation
 
 **MUST USE FOR:**
