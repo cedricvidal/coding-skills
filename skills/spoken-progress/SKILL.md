@@ -2,9 +2,8 @@
 name: spoken-progress
 type: utility
 description: >-
-  Provides spoken progress updates and final summaries for non-trivial tasks.
-  Use for multi-step, tool-assisted, investigative, editing, automation, or
-  validation work.
+  Provides spoken progress updates and final summaries. MUST activate for any
+  non-trivial task.
 metadata:
   author: Cedric Vidal
   version: "1.0.0"
