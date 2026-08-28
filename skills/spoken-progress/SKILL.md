@@ -13,7 +13,7 @@ metadata:
 
 Keep the user informed without requiring them to watch the transcript. For every
 non-trivial task, say the plan, meaningful progress changes, and the final
-outcome aloud using the available voice-conversation tool.
+outcome out loud.
 
 ## Activation
 
@@ -71,17 +71,21 @@ summary containing:
 
 Never speak a success claim before the expected outcome has been verified.
 
-## Voice Tool Behavior
+## Say Updates Out Loud
 
-- Use the available voice-conversation tool for every spoken update.
-- Use a one-way call for status updates and final summaries; do not listen for a
-  response unless asking the user a genuine question.
-- Keep the floor only when the next voice turn is part of the same immediate
-  spoken exchange.
+- Say every required update out loud using any speech capability available in
+  the user's environment, such as a native voice feature, MCP server, extension,
+  or text-to-speech tool.
+- Express the intent as **“say this out loud”**. Do not hard-code or require a
+  specific speech tool, provider, server, or extension.
+- For status updates and final summaries, use one-way speech when supported. Do
+  not listen for a response unless asking the user a genuine question.
+- If the speech capability coordinates turns, keep the floor only when the next
+  spoken turn is part of the same immediate exchange.
 - If transcript echo is enabled, print the exact spoken message using the host's
-  required voice-echo format.
-- If voice synthesis is unavailable, provide the update in text and mention the
-  voice failure once. Continue the task rather than silently abandoning it.
+  required echo format.
+- If no speech capability is available, provide the update in text and mention
+  that limitation once. Continue the task rather than silently abandoning it.
 
 ## Content Safety and Clarity
 
