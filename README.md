@@ -117,9 +117,23 @@ The **Attention Cues** skill injects visual attention devices into Playwright UX
 - **Synthetic click** — full pointer event sequence so toggles actuate on camera
 - **Smooth scroll** — centers the target before highlighting
 
-Companion to the `screen-capture` skill. Use whenever recording walkthrough videos, beat sequences, or capturing annotated screenshots.
+Companion to the `screen-capture` and `terminal-recording` skills. Use whenever recording walkthrough videos, beat sequences, or capturing annotated screenshots.
 
 See [skills/attention-cues/SKILL.md](skills/attention-cues/SKILL.md) for the full reference.
+
+### Terminal Recording
+
+The **Terminal Recording** skill records real CLI and TUI sessions through ttyd,
+Playwright, and headless Chrome on macOS and Linux. It supplies an isolated Bash
+setup, a reusable standalone recorder, and frame-aligned MP4 assembly.
+
+Use attention-cues alongside it for captions and highlights. Terminal-only demos
+work without screen-capture; mixed demos can use both capture skills with two
+persistent pages, preserving shell state and unsaved web-app inputs between beats.
+The scripts do not require companion-skill code.
+
+See [skills/terminal-recording/SKILL.md](skills/terminal-recording/SKILL.md) for
+prerequisites, the scenario-module quick start, and the borrowed-page API.
 
 ### Obsidian Iconic
 
