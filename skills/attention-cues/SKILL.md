@@ -3,7 +3,7 @@ name: attention-cues
 description: >-
   Inject visual-attention cues (highlight ring, spotlight scrim, caption HUD,
   label badge, synthetic click, smooth scroll) into Playwright UX recordings
-  and screenshots. Companion to `screen-capture`. Trigger on: "record beats",
+  and screenshots. Companion to `screen-capture` and `terminal-recording`. Trigger on: "record beats",
   "walkthrough video", "demo video", "annotated screenshots", "highlight the UI",
   "point the viewer at X", "make a captioned recording".
 compatibility: macOS or Linux, Node 18+, Playwright (any version in the workspace)
@@ -22,6 +22,14 @@ you record beats or capture annotated screens.
 This skill pairs with `screen-capture` (which handles environment setup,
 viewport/DPR, transcoding to MP4, pacing, and PR embedding). This skill owns the
 *in-page* layer: what the viewer sees drawn on top of the app.
+
+For CLI/TUI demos, pair it with [terminal-recording](../terminal-recording/SKILL.md),
+which supplies the complete capture workflow without requiring screen-capture.
+Follow that workflow's headless Chrome and DPR 1 defaults, including for mixed
+terminal/web-app takes. One capture owner chooses browser and recording settings;
+use this skill's guidance in the session-local scenario through its preparation
+and beat hooks. This is instruction-level composition, not a code dependency
+between the shipped terminal recorder and this toolkit.
 
 > Drop-in toolkit: [`scripts/attention-cues.mjs`](scripts/attention-cues.mjs).
 > Import it, install once, and call the cues per beat.
@@ -143,8 +151,10 @@ await installAttentionCues(context, {
       carries the sentence.
 - [ ] Toggles/checkboxes use `clickEl` (synthetic sequence), not just `page.click`,
       so they actuate on camera.
-- [ ] `headless: false` while recording — fonts, blur, and hover states differ in
-      headless.
+- [ ] Use the capture owner's browser settings. For terminal-recording and its
+      mixed-page workflow, use headless Chrome and DPR 1 by default and inspect
+      encoded frames. For other screen-capture workflows, retain their headed
+      defaults; fonts, blur, and hover states can differ.
 - [ ] For screenshots, dwell ~180 ms after `hlStart` so the ring/badge finish
       fading in before the shot.
 
