@@ -1,0 +1,19 @@
+{
+  "name": "coding-skills",
+  "owner": {
+    "name": "Cedric Vidal",
+    "url": "https://github.com/cedricvidal"
+  },
+  "metadata": {
+    "description": "Portable skills and plugins for coding agents"
+  },
+  "plugins": [
+    {
+      "name": "herdr-workspace-title",
+      "source": "./plugins/herdr-workspace-title",
+      "description": "Keep a Herdr workspace synchronized with its coding-agent session title.",
+      "version": "0.1.0",
+      "category": "Productivity"
+    }
+  ]
+}

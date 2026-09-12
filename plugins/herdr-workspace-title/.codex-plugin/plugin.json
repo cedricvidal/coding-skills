@@ -1,0 +1,27 @@
+{
+  "name": "herdr-workspace-title",
+  "version": "0.1.0",
+  "description": "Keep a Herdr workspace synchronized with its coding-agent session title.",
+  "author": {
+    "name": "Cedric Vidal",
+    "url": "https://github.com/cedricvidal"
+  },
+  "repository": "https://github.com/cedricvidal/coding-skills",
+  "keywords": [
+    "herdr",
+    "workspace",
+    "session",
+    "automation"
+  ],
+  "interface": {
+    "displayName": "Herdr Workspace Title",
+    "shortDescription": "Sync coding-agent session names to Herdr.",
+    "longDescription": "Continuously keeps a Herdr workspace name synchronized with the active coding-agent session title.",
+    "developerName": "Cedric Vidal",
+    "category": "Productivity",
+    "capabilities": [
+      "Automation"
+    ],
+    "defaultPrompt": "Help me configure Herdr workspace title synchronization."
+  }
+}
