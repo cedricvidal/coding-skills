@@ -1,0 +1,16 @@
+{
+  "description": "Synchronize coding-agent session titles to Herdr workspace names",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT}}/scripts/herdr-workspace-title.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

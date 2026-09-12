@@ -1,12 +1,48 @@
-# Coding Skills
+# Coding Skills and Plugins
 
-A collection of [agent skills](https://agentskills.io/specification) for software development workflows.
+A collection of [agent skills](https://agentskills.io/specification) and plugins
+for software development workflows.
 
 ## Installation
 
 ```bash
 npx skills add cedricvidal/coding-skills
 ```
+
+## Plugins
+
+Add this repository as the `coding-skills` marketplace in your coding agent,
+then install the plugin you want.
+
+### Herdr Workspace Title
+
+Keeps a Herdr workspace synchronized with its coding-agent session title,
+including later session renames. It currently requires macOS, Herdr, `jq`, and
+the relevant Herdr coding-agent integration.
+
+Codex:
+
+```sh
+codex plugin marketplace add cedricvidal/coding-skills
+codex plugin add herdr-workspace-title@coding-skills
+```
+
+Claude Code:
+
+```sh
+claude plugin marketplace add cedricvidal/coding-skills
+claude plugin install herdr-workspace-title@coding-skills
+```
+
+Copilot CLI:
+
+```sh
+copilot plugin marketplace add cedricvidal/coding-skills
+copilot plugin install herdr-workspace-title@coding-skills
+```
+
+See [plugins/herdr-workspace-title/README.md](plugins/herdr-workspace-title/README.md)
+for setup and behavior details.
 
 ## Skills
 
