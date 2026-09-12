@@ -15,7 +15,10 @@ watch_titles() {
   managed_label=$6
   HERDR_SOCKET_PATH=$7
   TMPDIR=$8
+  launchctl_bin=$9
+  job_label=${10}
   export HERDR_SOCKET_PATH TMPDIR
+  trap '"$launchctl_bin" remove "$job_label" >/dev/null 2>&1 || true' 0
 
   missing_session_reads=0
   while :; do
@@ -55,7 +58,7 @@ watch_titles() {
   done
 }
 
-if [ "${1:-}" = "--watch" ] && [ "$#" -eq 9 ]; then
+if [ "${1:-}" = "--watch" ] && [ "$#" -eq 11 ]; then
   shift
   watch_titles "$@"
   exit 0
@@ -89,6 +92,7 @@ job_label="com.cedricvidal.herdr-workspace-title.$job_key"
 "$launchctl_bin" submit -l "$job_label" -o /dev/null -e /dev/null -- \
   /bin/sh "$0" --watch "$herdr_bin" "$jq_bin" "$HERDR_PANE_ID" \
   "$HERDR_WORKSPACE_ID" "$session_id" "$original_label" \
-  "${HERDR_SOCKET_PATH:-}" "${TMPDIR:-/tmp}" >/dev/null 2>&1 || true
+  "${HERDR_SOCKET_PATH:-}" "${TMPDIR:-/tmp}" "$launchctl_bin" "$job_label" \
+  >/dev/null 2>&1 || true
 
 exit 0
