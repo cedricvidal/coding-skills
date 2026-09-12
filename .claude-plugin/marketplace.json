@@ -12,7 +12,6 @@
       "name": "herdr-workspace-title",
       "source": "./plugins/herdr-workspace-title",
       "description": "Keep a Herdr workspace synchronized with its coding-agent session title.",
-      "version": "0.1.0",
       "category": "Productivity"
     }
   ]
